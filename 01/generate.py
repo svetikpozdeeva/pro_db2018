@@ -1,13 +1,33 @@
-from faker import Faker
 import random
+from faker import Faker
+import json
 
-f = Faker("ru_RU")
+f = Faker('ru_RU')
 
-users = [] #10 пользователей -> users.json, users.csv
-products = [] #10 товаров -> products.json, products.csv
-sales = [] #0-10 случайных продаж случайного товара каждому пользователю ->sales.json, sales.csv
+pp = []
+for i in range(100):
+    persona = {}
+    persona['name'] = f.name()
+    persona['email'] = f.email()
+    persona['phone'] = f.phone_number()
+    pp.append(persona)
 
-user = {'name':"...", 'mail':"...", 'phone':"..."}
-product = {'name':"...", 'price': random.randomint(10000) / 100}
-sale = {'user':"name/id", 'product':"name/id", 'date':randomDate((2017,01,01),(2018,12,31)), 'count':random.randomint(10)} 
-#https://stackoverflow.com/questions/553303/generate-a-random-date-between-two-other-dates
+cc = []
+for i in range(100):
+    company = {}
+    company['name company'] = f.company()
+    cc.append(company)
+
+r = random.randint(1, 100)
+s = random.randint(1, 10000)/100
+d = random.choice(pp)
+g = random.choice(cc)
+
+print(json.dumps(d))
+print(json.dumps(g))
+print(json.dumps(r))
+print(json.dumps(s))
+f = open('persona.json', 'w', encoding='utf8')
+f.write(json.dumps(d) + '\n' + json.dumps(g) + '\n' + json.dumps(r) + '\n' + json.dumps(s))
+f.close()
+
